@@ -9,14 +9,10 @@ import dev.xf3d3.ultimateteams.commands.subCommands.*;
 import dev.xf3d3.ultimateteams.commands.subCommands.disband.TeamDisbandConfirmSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.disband.TeamDisbandSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.echest.TeamEnderChestSubCommand;
-import dev.xf3d3.ultimateteams.commands.subCommands.economy.TeamBankSubCommand;
-import dev.xf3d3.ultimateteams.commands.subCommands.economy.TeamFeeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamDelHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamSetHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.members.*;
-import dev.xf3d3.ultimateteams.commands.subCommands.relations.TeamAllySubCommand;
-import dev.xf3d3.ultimateteams.commands.subCommands.relations.TeamEnemySubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamDelWarpSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamSetWarpSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamWarpSubCommand;
@@ -241,55 +237,6 @@ public class TeamCommand extends BaseCommand {
     }
 
 
-
-    // TEAM ENEMIES
-    @Subcommand("enemy")
-    public void onTeamEnemyCommand(@NotNull CommandSender sender) {
-        plugin.getMessages().getTeamCommandIncorrectUsage().forEach(line -> sender.sendMessage(MineDown.parse(line)));
-    }
-
-    @Subcommand("enemy add")
-    @CommandCompletion("@teams @nothing")
-    @Syntax("<teamName>")
-    @CommandPermission("ultimateteams.team.enemy.add")
-    public void onTeamEnemyAddCommand(@NotNull CommandSender sender, @Values("@teams") String teamName) {
-        new TeamEnemySubCommand(plugin).teamEnemySubAddCommand(sender, teamName);
-    }
-
-    @Subcommand("enemy remove")
-    @CommandCompletion("@enemies @nothing")
-    @Syntax("<teamName>")
-    @CommandPermission("ultimateteams.team.enemy.remove")
-    public void onTeamEnemyRemoveCommand(@NotNull CommandSender sender, @Values("@enemies") String teamName) {
-        new TeamEnemySubCommand(plugin).teamEnemySubRemoveCommand(sender, teamName);
-    }
-
-
-    // TEAM ALLIES
-    /*
-    @Subcommand("ally")
-    public void onTeamAllyCommand(@NotNull CommandSender sender) {
-        plugin.getMessages().getTeamCommandIncorrectUsage().forEach(line -> sender.sendMessage(MineDown.parse(line)));
-    }
-
-    @Subcommand("ally add")
-    @CommandCompletion("@teams @nothing")
-    @Syntax("<teamName>")
-    @CommandPermission("ultimateteams.team.ally.add")
-    public void onTeamAllyAddCommand(@NotNull CommandSender sender, @Values("@teams") String teamName) {
-        new TeamAllySubCommand(plugin).teamAllyAddSubCommand(sender, teamName);
-    }
-
-    @Subcommand("ally remove")
-    @CommandCompletion("@allies  @nothing")
-    @Syntax("<teamName>")
-    @CommandPermission("ultimateteams.team.ally.remove")
-    public void onTeamAllyRemoveCommand(@NotNull CommandSender sender, @Values("@allies") String teamName) {
-        new TeamAllySubCommand(plugin).teamAllyRemoveSubCommand(sender, teamName);
-    }
-     */
-
-
     // TEAM LEAVE
     @Subcommand("leave")
     @CommandCompletion("@nothing")
@@ -368,6 +315,7 @@ public class TeamCommand extends BaseCommand {
     }
 
 
+    /*
     // TEAM PERMISSIONS
     @Subcommand("permissions")
     public void onTeamPermissionsCommand(@NotNull CommandSender sender) {
@@ -389,6 +337,7 @@ public class TeamCommand extends BaseCommand {
     public void onTeamPermissionsRemoveCommand(@NotNull CommandSender sender, @Values("@teamPermissions") String permission) {
         new TeamPermissionsSubCommand(plugin).teamPermissionsRemoveSubCommand(sender, permission);
     }
+     */
 
     // TEAM ENDER CHEST
     @Subcommand("echest")
@@ -405,6 +354,7 @@ public class TeamCommand extends BaseCommand {
         new TeamEnderChestSubCommand(plugin).openEnderChest(sender, chestNumber);
     }
 
+    /*
     // TEAM BANK
     @Subcommand("deposit")
     @CommandCompletion("1000|10000")
@@ -456,4 +406,5 @@ public class TeamCommand extends BaseCommand {
     public void onTeamDisableMotdCommand(@NotNull CommandSender sender) {
         new TeamMotdSubCommand(plugin).teamRemoveMotdSubCommand(sender);
     }
+     */
 }

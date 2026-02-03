@@ -135,7 +135,6 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
             this.manager.registerCommand(new TeamCommand(this));
             this.manager.registerCommand(new TeamChatSpyCommand(this));
             this.manager.registerCommand(new TeamChatCommand(this));
-            // this.manager.registerCommand(new TeamAllyChatCommand(this));
             this.manager.registerCommand(new TeamAdmin(this));
             this.manager.registerCommand(new TeamInvites(this));
         });
