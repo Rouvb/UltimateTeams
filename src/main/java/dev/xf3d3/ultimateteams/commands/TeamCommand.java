@@ -266,6 +266,7 @@ public class TeamCommand extends BaseCommand {
 
 
     // TEAM ALLIES
+    /*
     @Subcommand("ally")
     public void onTeamAllyCommand(@NotNull CommandSender sender) {
         plugin.getMessages().getTeamCommandIncorrectUsage().forEach(line -> sender.sendMessage(MineDown.parse(line)));
@@ -286,6 +287,7 @@ public class TeamCommand extends BaseCommand {
     public void onTeamAllyRemoveCommand(@NotNull CommandSender sender, @Values("@allies") String teamName) {
         new TeamAllySubCommand(plugin).teamAllyRemoveSubCommand(sender, teamName);
     }
+     */
 
 
     // TEAM LEAVE
