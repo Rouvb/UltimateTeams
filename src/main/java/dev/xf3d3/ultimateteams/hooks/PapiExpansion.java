@@ -98,7 +98,7 @@ public class PapiExpansion extends PlaceholderExpansion {
                         .map(team -> {
                             String prefix = team.getPrefix();
                             if (prefix == null || prefix.isEmpty()) {
-                                return "";
+                                return team.getName();
                             }
                             return plugin.getSettings().addPrefixBrackets()
                                     ? openBracket + prefix + closeBracket
