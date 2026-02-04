@@ -13,9 +13,6 @@ import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamDelHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.home.TeamSetHomeSubCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.members.*;
-import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamDelWarpSubCommand;
-import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamSetWarpSubCommand;
-import dev.xf3d3.ultimateteams.commands.subCommands.warps.TeamWarpSubCommand;
 import dev.xf3d3.ultimateteams.gui.TeamList;
 import dev.xf3d3.ultimateteams.gui.TeamManager;
 import org.bukkit.OfflinePlayer;
@@ -124,6 +121,7 @@ public class TeamCommand extends BaseCommand {
     }
 
 
+    /*
     // WARPS
     @Subcommand("warp")
     @CommandCompletion("@warps @nothing")
@@ -153,6 +151,7 @@ public class TeamCommand extends BaseCommand {
     public void onTeamDelWarpCommand(@NotNull CommandSender sender, @Values("@warps") String name) {
         new TeamDelWarpSubCommand(plugin).delWarpCommand(sender, name);
     }
+     */
 
 
     // TEAM DISBAND
@@ -282,7 +281,7 @@ public class TeamCommand extends BaseCommand {
 
 
     // TEAM PREFIX
-    @Subcommand("prefix")
+    @Subcommand("prefix|tag")
     @CommandCompletion("<prefix> @nothing")
     @Syntax("<prefix>")
     @CommandPermission("ultimateteams.team.prefix")
