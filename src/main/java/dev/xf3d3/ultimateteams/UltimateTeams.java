@@ -7,7 +7,6 @@ import de.themoep.minedown.adventure.MineDown;
 import dev.xf3d3.ultimateteams.api.UltimateTeamsAPI;
 import dev.xf3d3.ultimateteams.commands.TeamAdmin;
 import dev.xf3d3.ultimateteams.commands.TeamCommand;
-import dev.xf3d3.ultimateteams.commands.chat.TeamAllyChatCommand;
 import dev.xf3d3.ultimateteams.commands.chat.TeamChatCommand;
 import dev.xf3d3.ultimateteams.commands.chat.TeamChatSpyCommand;
 import dev.xf3d3.ultimateteams.commands.subCommands.members.TeamInvites;
@@ -46,7 +45,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -141,13 +139,14 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
 
         // Register events
         initialize("events", (plugin) -> {
-            this.getServer().getPluginManager().registerEvents(new PlayerConnectEvent(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerDisconnectEvent(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerDamageEvent(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerConnectListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerDisconnectListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerDamageListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerChatListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerRespawnListener(this), this);
 
             if (getSettings().isTeamCancelTp()) {
-                this.getServer().getPluginManager().registerEvents(new PlayerTeleportHelper(this), this);
+                this.getServer().getPluginManager().registerEvents(new PlayerTeleportListener(this), this);
             }
         });
 
