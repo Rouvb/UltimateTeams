@@ -9,7 +9,6 @@ import dev.xf3d3.ultimateteams.utils.Utils;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,10 +19,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class PlayerChatEvent implements Listener {
+public class PlayerChatListener implements Listener {
     private final UltimateTeams plugin;
 
-    public PlayerChatEvent(@NotNull UltimateTeams plugin) {
+    public PlayerChatListener(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

@@ -200,6 +200,10 @@ public class Settings {
     @YamlKey("team.home.enabled")
     private boolean teamHomeEnabled = true;
 
+    @YamlComment("Enable the set respawn location to team home. [Default value: true]")
+    @YamlKey("team.home.respawn.enabled")
+    private boolean teamHomeRespawnEnabled = true;
+
     @YamlComment("Define the delay (cooldown) in seconds before the tp starts.\nThis value has no effect if using HuskHomes as teleport handler")
     @YamlKey("team.home.tp-delay")
     private int teamHomeTpDelay = 3;
@@ -653,6 +657,10 @@ public class Settings {
 
     public boolean teamHomeEnabled() {
         return teamHomeEnabled;
+    }
+
+    public boolean isTeamHomeRespawnEnabled() {
+        return teamHomeRespawnEnabled;
     }
 
     public int getTeamHomeTpDelay() {

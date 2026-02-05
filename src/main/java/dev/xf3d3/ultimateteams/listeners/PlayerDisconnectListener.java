@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PlayerDisconnectEvent implements Listener {
+public class PlayerDisconnectListener implements Listener {
     private final UltimateTeams plugin;
-    public PlayerDisconnectEvent(@NotNull UltimateTeams plugin) {
+    public PlayerDisconnectListener(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

@@ -15,10 +15,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class PlayerConnectEvent implements Listener {
+public class PlayerConnectListener implements Listener {
 
     private final UltimateTeams plugin;
-    public PlayerConnectEvent(@NotNull UltimateTeams plugin) {
+    public PlayerConnectListener(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

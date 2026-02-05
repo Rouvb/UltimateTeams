@@ -18,13 +18,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class PlayerDamageEvent implements Listener {
+public class PlayerDamageListener implements Listener {
 
     private final Map<Block, UUID> explodingAnchors = new ConcurrentHashMap<>();
 
     private final UltimateTeams plugin;
 
-    public PlayerDamageEvent(@NotNull UltimateTeams plugin) {
+    public PlayerDamageListener(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

@@ -2,7 +2,6 @@ package dev.xf3d3.ultimateteams.listeners;
 
 import de.themoep.minedown.adventure.MineDown;
 import dev.xf3d3.ultimateteams.UltimateTeams;
-import dev.xf3d3.ultimateteams.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,10 +12,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
 
 
-public class PlayerTeleportHelper implements Listener {
+public class PlayerTeleportListener implements Listener {
     private final UltimateTeams plugin;
 
-    public PlayerTeleportHelper(@NotNull UltimateTeams plugin) {
+    public PlayerTeleportListener(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 
