@@ -20,8 +20,12 @@ repositories {
     maven("https://repo.opencollab.dev/main/")
     maven("https://mvn-repo.arim.space/lesser-gpl3/")
     maven("https://repo.aikar.co/content/groups/aikar/")
-    maven ("https://repo.tcoded.com/releases")
-    maven ("https://repo.minebench.de/")
+    maven("https://repo.tcoded.com/releases")
+    maven("https://repo.minebench.de/")
+    maven {
+        name = "lunarclient"
+        url = uri("https://repo.lunarclient.dev")
+    }
 }
 
 dependencies {
@@ -31,11 +35,11 @@ dependencies {
     implementation("com.google.code.gson:gson:2.13.2")
 
     // Kotlin
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:2.2.21")
+    implementation(kotlin("stdlib"))
 
+    // Lombok
     compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
-
     testCompileOnly("org.projectlombok:lombok:1.18.42")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
 
@@ -45,7 +49,7 @@ dependencies {
     compileOnly("org.geysermc.floodgate:api:2.2.5-SNAPSHOT")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("de.themoep:inventorygui:1.6.6-SNAPSHOT")
-    
+
     // PaperLib
     implementation("io.papermc:paperlib:1.0.8")
     implementation("com.tcoded:FoliaLib:0.5.1")
@@ -53,11 +57,13 @@ dependencies {
     // Libs
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     implementation("dev.dejvokep:boosted-yaml:1.3.7")
-
     implementation("de.themoep:minedown-adventure:1.7.5")
 
     compileOnly("net.luckperms:api:5.5")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7.1")
+
+    compileOnly("com.lunarclient:apollo-api:1.2.1")
+    compileOnly("com.lunarclient:apollo-extra-adventure4:1.2.1")
 
     // Database
     compileOnly("org.xerial:sqlite-jdbc:3.51.0.0")
@@ -77,18 +83,17 @@ tasks {
 
     shadowJar {
         archiveFileName.set("${rootProject.name}-${rootProject.version}.jar")
-
         exclude("com/google/errorprone/annotations/**")
 
         relocate("org.bstats", "dev.xf3d3.ultimateteams.libraries.bstats")
         relocate("de.themoep.minedown", "dev.xf3d3.ultimateteams.libraries.minedown")
+        relocate("de.themoep.inventorygui", "dev.xf3d3.ultimateteams.libraries.inventorygui")
         relocate("com.tcoded.folialib", "dev.xf3d3.ultimateteams.libraries.folialib")
         relocate("co.aikar", "dev.xf3d3.ultimateteams.libraries.aikar")
         relocate("com.google.gson", "dev.xf3d3.ultimateteams.libraries.gson")
         relocate("org.jetbrains", "dev.xf3d3.ultimateteams.libraries.jetbrains")
         relocate("org.intellij", "dev.xf3d3.ultimateteams.libraries.intellij")
         relocate("org.json", "dev.xf3d3.ultimateteams.libraries.json")
-        relocate("de.themoep", "dev.xf3d3.ultimateteams.libraries.inventorygui")
         relocate("dev.dejvokep", "dev.xf3d3.ultimateteams.libraries.boostedyaml")
         relocate("net.william278.desertwell", "dev.xf3d3.ultimateteams.libraries.william278.desertwell")
         relocate("net.william278.annotaml", "dev.xf3d3.ultimateteams.libraries.william278.annotaml")
@@ -103,11 +108,10 @@ tasks {
 }
 
 tasks.withType<Javadoc>().configureEach {
-    options.encoding = "UTF-8" // You can also put the encoding here
+    options.encoding = "UTF-8"
     if (options is StandardJavadocDocletOptions) {
-        // You need to add these as two separate options
         (options as StandardJavadocDocletOptions).addStringOption("Xdoclint:none")
-        (options as StandardJavadocDocletOptions).addStringOption("-quiet")
+        (options as StandardJavadocDocletOptions).addBooleanOption("quiet", true)
     }
 }
 
@@ -115,19 +119,16 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
-
     withJavadocJar()
     withSourcesJar()
 }
-
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-
             groupId = project.group.toString()
-            artifactId = rootProject.name
+            artifactId = project.name
             version = project.version.toString()
         }
     }
