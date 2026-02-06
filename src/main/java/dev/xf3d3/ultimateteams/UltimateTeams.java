@@ -143,6 +143,7 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
             this.getServer().getPluginManager().registerEvents(new PlayerDamageHandler(this), this);
             this.getServer().getPluginManager().registerEvents(new PlayerChatHandler(this), this);
             this.getServer().getPluginManager().registerEvents(new PlayerRespawnHandler(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerWaypointHandler(this), this);
 
             if (getSettings().isTeamCancelTp()) {
                 this.getServer().getPluginManager().registerEvents(new PlayerTeleportHandler(this), this);

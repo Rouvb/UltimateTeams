@@ -9,6 +9,7 @@ contributors: [ dei2004, gbpii, R00tB33rMan ]
 description: A simple and lightweight Teams plugin for Minecraft, with cross-server support, developed with optimization in mind!
 folia-supported: true
 softdepend:
+  - 'Apollo-Bukkit'
   - 'PlaceholderAPI'
   - 'floodgate'
   - 'HuskHomes'
