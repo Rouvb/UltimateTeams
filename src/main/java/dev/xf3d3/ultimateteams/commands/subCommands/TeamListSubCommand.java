@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class TeamListSubCommand {
 
-
     private final UltimateTeams plugin;
 
     public TeamListSubCommand(@NotNull UltimateTeams plugin) {
@@ -16,19 +15,40 @@ public class TeamListSubCommand {
     }
 
     public void teamListSubCommand(CommandSender sender) {
-            StringBuilder teamsString = new StringBuilder();
 
-            if (plugin.getTeamStorageUtil().getTeams().isEmpty()) {
-                sender.sendMessage(MineDown.parse(plugin.getMessages().getNoTeamsToList()));
-            } else {
-                teamsString.append(Utils.Color(plugin.getMessages().getTeamsListHeader() + "\n"));
+        if (plugin.getTeamStorageUtil().getTeams().isEmpty()) {
+            sender.sendMessage(
+                    MineDown.parse(plugin.getMessages().getNoTeamsToList())
+            );
+            return;
+        }
 
-                plugin.getTeamStorageUtil().getTeams().forEach(team -> teamsString.append(Utils.Color(team.getName() + "&r\n")));
+        StringBuilder builder = new StringBuilder();
 
-                teamsString.append(" ");
-                teamsString.append(Utils.Color(plugin.getMessages().getTeamsListFooter()));
+        // Header
+        builder.append(Utils.Color(plugin.getMessages().getTeamsListHeader()))
+                .append("\n");
 
-                sender.sendMessage(teamsString.toString());
-            }
+        plugin.getTeamStorageUtil()
+                .getTeams()
+                .forEach(team -> {
+                    int online = team.getOnlineMembers().size();
+                    int total = team.getMembers().size();
+
+                    String prefix = team.getPrefix();
+                    if (prefix == null) prefix = "";
+
+                    builder.append(Utils.Color(
+                            "#07DBF2 • &f" + team.getName()
+                                    + (prefix.isEmpty() ? "" : " &7(" + prefix + "&7)")
+                                    + " &7(" + online + "/" + total + ")"
+                    )).append("\n");
+
+                });
+
+        // Footer
+        builder.append(Utils.Color(plugin.getMessages().getTeamsListFooter()));
+
+        sender.sendMessage(builder.toString());
     }
 }
