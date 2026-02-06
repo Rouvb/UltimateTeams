@@ -1,4 +1,4 @@
-package dev.xf3d3.ultimateteams.listeners;
+package dev.xf3d3.ultimateteams.handlers;
 
 import de.themoep.minedown.adventure.MineDown;
 import dev.xf3d3.ultimateteams.UltimateTeams;
@@ -18,13 +18,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class PlayerDamageListener implements Listener {
+public class PlayerDamageHandler implements Listener {
 
     private final Map<Block, UUID> explodingAnchors = new ConcurrentHashMap<>();
 
     private final UltimateTeams plugin;
 
-    public PlayerDamageListener(@NotNull UltimateTeams plugin) {
+    public PlayerDamageHandler(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

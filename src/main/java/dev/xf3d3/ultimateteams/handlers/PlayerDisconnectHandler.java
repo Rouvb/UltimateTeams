@@ -1,4 +1,4 @@
-package dev.xf3d3.ultimateteams.listeners;
+package dev.xf3d3.ultimateteams.handlers;
 
 import dev.xf3d3.ultimateteams.UltimateTeams;
 import dev.xf3d3.ultimateteams.models.User;
@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class PlayerDisconnectListener implements Listener {
+public class PlayerDisconnectHandler implements Listener {
     private final UltimateTeams plugin;
-    public PlayerDisconnectListener(@NotNull UltimateTeams plugin) {
+    public PlayerDisconnectHandler(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

@@ -15,7 +15,7 @@ import dev.xf3d3.ultimateteams.config.Settings;
 import dev.xf3d3.ultimateteams.config.TeamsGui;
 import dev.xf3d3.ultimateteams.database.*;
 import dev.xf3d3.ultimateteams.hooks.*;
-import dev.xf3d3.ultimateteams.listeners.*;
+import dev.xf3d3.ultimateteams.handlers.*;
 import dev.xf3d3.ultimateteams.models.Team;
 import dev.xf3d3.ultimateteams.models.User;
 import dev.xf3d3.ultimateteams.network.Broker;
@@ -78,7 +78,6 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
     @Getter @Nullable private VaultHook economyHook;
     @Getter private EnderChestBackupManager backupManager;
 
-
     @Override
     public void onLoad() {
         instance = this;
@@ -139,14 +138,14 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
 
         // Register events
         initialize("events", (plugin) -> {
-            this.getServer().getPluginManager().registerEvents(new PlayerConnectListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerDisconnectListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerDamageListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerChatListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerRespawnListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerConnectHandler(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerDisconnectHandler(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerDamageHandler(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerChatHandler(this), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerRespawnHandler(this), this);
 
             if (getSettings().isTeamCancelTp()) {
-                this.getServer().getPluginManager().registerEvents(new PlayerTeleportListener(this), this);
+                this.getServer().getPluginManager().registerEvents(new PlayerTeleportHandler(this), this);
             }
         });
 
@@ -170,6 +169,7 @@ public final class UltimateTeams extends JavaPlugin implements TaskRunner, GsonU
         if (Bukkit.getPluginManager().getPlugin("LuckPerms") != null && getSettings().LuckPermsHook()) {
             initialize("luckperms" , (plugin) -> new LuckPermsHook(this));
         }
+
 
         // Register command completions
         this.manager.getCommandCompletions().registerAsyncCompletion("onlineUsers", c -> getUsersStorageUtil().getUserList().stream().map(User::getUsername).collect(Collectors.toList()));

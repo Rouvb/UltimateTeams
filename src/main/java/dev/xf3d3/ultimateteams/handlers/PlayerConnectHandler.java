@@ -1,6 +1,12 @@
-package dev.xf3d3.ultimateteams.listeners;
+package dev.xf3d3.ultimateteams.handlers;
 
+import com.lunarclient.apollo.Apollo;
+import com.lunarclient.apollo.common.location.ApolloBlockLocation;
+import com.lunarclient.apollo.module.waypoint.Waypoint;
+import com.lunarclient.apollo.module.waypoint.WaypointModule;
+import com.lunarclient.apollo.player.ApolloPlayer;
 import dev.xf3d3.ultimateteams.UltimateTeams;
+import dev.xf3d3.ultimateteams.models.Team;
 import dev.xf3d3.ultimateteams.models.User;
 import dev.xf3d3.ultimateteams.utils.UsersStorage;
 import dev.xf3d3.ultimateteams.utils.Utils;
@@ -15,14 +21,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class PlayerConnectListener implements Listener {
+public class PlayerConnectHandler implements Listener {
 
     private final UltimateTeams plugin;
-    public PlayerConnectListener(@NotNull UltimateTeams plugin) {
+    public PlayerConnectHandler(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
-
-
 
     @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent e) {
@@ -61,7 +65,6 @@ public class PlayerConnectListener implements Listener {
 
         handleJavaPlayer(player);
     }
-
 
     private void handleJavaPlayer(Player player) {
         plugin.getUsersStorageUtil().getPlayer(player.getUniqueId()).thenAccept(teamPlayer -> {

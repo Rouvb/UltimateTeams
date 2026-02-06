@@ -1,4 +1,4 @@
-package dev.xf3d3.ultimateteams.listeners;
+package dev.xf3d3.ultimateteams.handlers;
 
 import dev.xf3d3.ultimateteams.UltimateTeams;
 import dev.xf3d3.ultimateteams.models.Team;
@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class PlayerChatListener implements Listener {
+public class PlayerChatHandler implements Listener {
     private final UltimateTeams plugin;
 
-    public PlayerChatListener(@NotNull UltimateTeams plugin) {
+    public PlayerChatHandler(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 

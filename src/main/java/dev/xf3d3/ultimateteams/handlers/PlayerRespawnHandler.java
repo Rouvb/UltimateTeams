@@ -1,4 +1,4 @@
-package dev.xf3d3.ultimateteams.listeners;
+package dev.xf3d3.ultimateteams.handlers;
 
 import dev.xf3d3.ultimateteams.UltimateTeams;
 import dev.xf3d3.ultimateteams.models.Team;
@@ -12,11 +12,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class PlayerRespawnListener implements Listener {
+public class PlayerRespawnHandler implements Listener {
 
     private final UltimateTeams plugin;
 
-    public PlayerRespawnListener(@NotNull UltimateTeams plugin) {
+    public PlayerRespawnHandler(@NotNull UltimateTeams plugin) {
         this.plugin = plugin;
     }
 
